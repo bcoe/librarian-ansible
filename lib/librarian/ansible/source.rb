@@ -1,0 +1,5 @@
+require 'librarian/ansible/source/path'
+require 'librarian/ansible/source/git'
+require 'librarian/ansible/source/github'
+require 'librarian/ansible/source/galaxy'
+require 'librarian/ansible/source/site'

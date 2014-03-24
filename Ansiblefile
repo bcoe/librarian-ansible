@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
+site "https://galaxy.ansible.com/api/v1"
+
+role "Traackr.ansible-elasticsearch"
+
+role "pgolm.ansible-playbook-monit",
+  github: "pgolm/ansible-playbook-monit"
+
+role "ansible-role-nagios-nrpe-server",
+  ">=1.0.0",
+  path: "./roles/ansible-role-nagios-nrpe-server"
