@@ -17,5 +17,5 @@ test/version_tmp
 tmp
 roles
 librarian_roles
-./Ansiblefile
+Ansiblefile
 Ansiblefile.lock

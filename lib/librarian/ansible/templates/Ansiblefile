@@ -3,5 +3,8 @@
 
 site "https://galaxy.ansible.com/api/v1"
 
-role "Traackr.ansible-elasticsearch"
+# for the benefit of ansible-librarian, you can set version in
+# manifest/main.yml.
+role "Traackr.ansible-elasticsearch", ">=0.0.0"
+
 role "pgolm.ansible-playbook-monit", github: "pgolm/ansible-playbook-monit"
