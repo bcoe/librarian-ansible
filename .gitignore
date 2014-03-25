@@ -19,3 +19,4 @@ roles
 librarian_roles
 Ansiblefile
 Ansiblefile.lock
+npm-debug.log

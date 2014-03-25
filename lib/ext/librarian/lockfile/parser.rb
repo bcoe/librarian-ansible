@@ -1,10 +1,8 @@
-#
-# For Ansible, allow "." in package names.
-#
 require 'librarian/manifest'
 require 'librarian/dependency'
 require 'librarian/manifest_set'
 
+# Override the lockfile parser, to allow '.' in package names.
 module Librarian
   class Lockfile
     class Parser

@@ -1,7 +1,7 @@
 require 'librarian/spec'
 
-# Overrid the default librarian DSL to pass the name
-# value to sources.
+# Override the default librarian DSL to pass the 'name'
+# parameter to a source.
 module Librarian
   class Dsl
     class Target

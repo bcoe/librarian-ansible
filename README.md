@@ -1,24 +1,104 @@
-# Librarian::Ansible
+Librarian::Ansible
+=================
 
-TODO: Write a gem description
+Port of librarian-chef, providing bundler functionality for Ansible roles.
 
-## Installation
+Installation
+------------
 
-Add this line to your application's Gemfile:
+```bash
+gem install librarian-ansible
+```
 
-    gem 'librarian-ansible'
+Ansiblefile: Describing Your Dependencies
+---------------------------------------------
 
-And then execute:
+To document the external Ansible roles you rely on, simply place them in an Ansiblefile:
 
-    $ bundle
+_An Example Ansiblefile:_
 
-Or install it yourself as:
+```ruby
+#!/usr/bin/env ruby
+#^syntax detection
 
-    $ gem install librarian-ansible
+site "https://galaxy.ansible.com/api/v1"
 
-## Usage
+role "kunik.deploy-upstart-scripts"
 
-TODO: Write usage instructions here
+role "pgolm.ansible-playbook-monit",
+  github: "pgolm/ansible-playbook-monit"
+
+role "ansible-role-nagios-nrpe-server",
+  ">=0.0.0",
+  path: "./roles/ansible-role-nagios-nrpe-server"
+```
+
+Your dependencies can be:
+
+* Ansible Galaxy IDs:
+
+```ruby
+role "kunik.deploy-upstart-scripts"
+```
+
+* paths to local files:
+
+```ruby
+role "ansible-role-nagios-nrpe-server", path: "./roles/ansible-role-nagios-nrpe-server"
+```
+
+* Github username/project pairs:
+
+```ruby
+role "pgolm.ansible-playbook-monit", github: "pgolm/ansible-playbook-monit"
+```
+
+* Git repos:
+
+```ruby
+role "pgolm.ansible-playbook-monit", git: "git@github.com:pgolm/ansible-playbook-monit.git"
+```
+
+Installing Dependencies
+-----------------------
+
+To install your dependencies, simply run:
+
+```bash
+librarian-ansible install
+```
+
+The first time you run this, an Ansible.lock file will be created which should be checked into your repo. This file ensures that other developers are pinned to the appropriate role versions.
+
+On Version #s
+-------------
+
+librarian-ansible supports version #s, simply add one to your `meta/main.yml` file:
+
+```yml
+---
+galaxy_info:
+  author: Peter Golm
+  license: MIT
+  min_ansible_version: 1.4
+  platforms:
+    - name: Ubuntu
+      versions:
+        - raring
+        - saucy
+
+  categories:
+    - monitoring
+    - system
+dependencies: []
+version: 2.0.0
+```
+
+And update your Ansiblefile accordingly:
+
+```ruby
+role "kunik.deploy-upstart-scripts", "1.0.0"
+```
 
 ## Contributing
 

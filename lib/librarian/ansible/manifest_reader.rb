@@ -13,8 +13,10 @@ module Librarian
       end
 
       def read_manifest(name, manifest_path)
-        case manifest_path.extname
-        when ".yml", ".yaml" then YAML.load(binread(manifest_path))
+        if [".yml", ".yaml"].include?(manifest_path.extname)
+          YAML.load(binread(manifest_path)).tap do |m|
+            m["dependencies"] ||= []
+          end
         end
       end
 

@@ -31,19 +31,22 @@ module Librarian
           private
 
           def github_url(uri)
-            github_user, name = uri.split(".")
+            username, name = uri.split(".")
 
             conn = Faraday.new(:url => @@galaxy_api)
 
-            response = conn.get("#{@@galaxy_api}/roles/?name=#{name}&github_user=#{github_user}&format=json")
+            response = conn.get("#{@@galaxy_api}/roles/?name=#{name}&format=json")
 
             if response.status != 200
               raise Error, "Could not read package from galaxy API."
             else
-              package = JSON.parse(response.body)['results'].first
+              package = JSON.parse(response.body)['results'].find do |r|
+                r['summary_fields']['owner']['username'] == username &&
+                  r['name'] == name
+              end
             end
 
-            "https://github.com/#{github_user}/#{package['github_repo']}"
+            "https://github.com/#{package['github_user']}/#{package['github_repo']}"
           end
 
         end
