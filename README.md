@@ -1,7 +1,11 @@
 Librarian-Ansible
 =================
 
-Port of librarian-chef, providing bundler functionality for Ansible roles.
+Provides bundler-inspired functionality for Ansible roles:
+
+http://bundler.io/v1.3/rationale.html
+
+This is a port of (librarian-chef)[https://github.com/applicationsonline/librarian-chef]
 
 Installation
 ------------
