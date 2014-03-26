@@ -5,7 +5,7 @@ Provides bundler-inspired functionality for Ansible roles:
 
 http://bundler.io/v1.3/rationale.html
 
-This is a port of (librarian-chef)[https://github.com/applicationsonline/librarian-chef]
+This is a port of [librarian-chef](https://github.com/applicationsonline/librarian-chef)
 
 Installation
 ------------
