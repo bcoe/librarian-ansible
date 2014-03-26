@@ -1,4 +1,4 @@
-Librarian::Ansible
+Librarian-Ansible
 =================
 
 Port of librarian-chef, providing bundler functionality for Ansible roles.
@@ -70,7 +70,7 @@ librarian-ansible install
 
 The first time you run this, an Ansible.lock file will be created which should be checked into your repo. This file ensures that other developers are pinned to the appropriate role versions.
 
-On Version #s
+Specifying Version #s
 -------------
 
 librarian-ansible supports version #s, simply add one to your `meta/main.yml` file:
