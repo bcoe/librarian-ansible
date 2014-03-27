@@ -15,7 +15,7 @@ module Librarian
       def read_manifest(name, manifest_path)
         if [".yml", ".yaml"].include?(manifest_path.extname)
           YAML.load(binread(manifest_path)).tap do |m|
-            m["dependencies"] ||= []
+            m["dependencies"] = []
           end
         end
       end
