@@ -6,8 +6,8 @@ require 'librarian/ansible/version'
 Gem::Specification.new do |gem|
   gem.name          = "librarian-ansible"
   gem.version       = Librarian::Ansible::VERSION
-  gem.authors       = ["Jay Feldblum"]
-  gem.email         = ["y_feldblum@yahoo.com"]
+  gem.authors       = ["Benjamin Coe"]
+  gem.email         = ["bencoe@gmail.com"]
   gem.summary       = %q{A Bundler for your Ansible roles.}
   gem.description   = %q{A Bundler for your Ansible roles.}
   gem.homepage      = ""
