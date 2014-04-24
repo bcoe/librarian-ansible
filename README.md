@@ -1,6 +1,8 @@
 Librarian-Ansible
 =================
 
+[![Code Climate](https://codeclimate.com/github/bcoe/librarian-ansible.png)](https://codeclimate.com/github/bcoe/librarian-ansible)
+
 Provides bundler-inspired functionality for Ansible roles:
 
 http://bundler.io/v1.3/rationale.html
