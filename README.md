@@ -2,6 +2,7 @@ Librarian-Ansible
 =================
 
 [![Code Climate](https://codeclimate.com/github/bcoe/librarian-ansible.png)](https://codeclimate.com/github/bcoe/librarian-ansible)
+[![Build Status](https://travis-ci.org/bcoe/librarian-ansible.png)](https://travis-ci.org/bcoe/librarian-ansible)
 
 Provides bundler-inspired functionality for Ansible roles:
 
