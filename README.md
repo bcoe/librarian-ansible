@@ -33,11 +33,11 @@ site "https://galaxy.ansible.com/api/v1"
 role "kunik.deploy-upstart-scripts"
 
 role "pgolm.ansible-playbook-monit",
-  github: "pgolm/ansible-playbook-monit"
+  :github => "pgolm/ansible-playbook-monit"
 
 role "ansible-role-nagios-nrpe-server",
   ">=0.0.0",
-  path: "./roles/ansible-role-nagios-nrpe-server"
+  :path => "./roles/ansible-role-nagios-nrpe-server"
 ```
 
 Your dependencies can be:
@@ -51,19 +51,27 @@ role "kunik.deploy-upstart-scripts"
 * paths to local files:
 
 ```ruby
-role "ansible-role-nagios-nrpe-server", path: "./roles/ansible-role-nagios-nrpe-server"
+role "ansible-role-nagios-nrpe-server", :path => "./roles/ansible-role-nagios-nrpe-server"
 ```
 
 * Github username/project pairs:
 
 ```ruby
-role "pgolm.ansible-playbook-monit", github: "pgolm/ansible-playbook-monit"
+role "pgolm.ansible-playbook-monit", :github => "pgolm/ansible-playbook-monit"
 ```
 
-* Git repos:
+* Git repos (master branch):
 
 ```ruby
-role "pgolm.ansible-playbook-monit", git: "git@github.com:pgolm/ansible-playbook-monit.git"
+role "pgolm.ansible-playbook-monit", :git => "git@github.com:pgolm/ansible-playbook-monit.git"
+```
+
+* Git repos and check out a tag (or anything that git will recognize as a ref)
+
+```ruby
+role "varnish",
+    :git => "git@github.com:geerlingguy/ansible-role-varnish",
+    :ref => "1.0.0"
 ```
 
 Installing Dependencies
