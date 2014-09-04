@@ -31,27 +31,40 @@ module Librarian
           private
 
           def github_url(uri)
-            username, name = uri.split(".")
-
-            conn = Faraday.new(:url => @@galaxy_api)
-
-            response = conn.get("#{@@galaxy_api}/roles/?name=#{name}&format=json")
-
-            if response.status != 200
-              raise Error, "Could not read package from galaxy API."
-            else
-              package = JSON.parse(response.body)['results'].find do |r|
-                r['summary_fields']['owner']['username'] == username &&
-                  r['name'] == name
-              end
+            package = nil
+            # because both name and username can contain dots, we have
+            # to check every combination until package will be found
+            segments = uri.split('.')
+            (0..segments.size - 2).each do |pivot|
+              username = segments[0..pivot].join('.')
+              name = segments[pivot + 1..-1].join('.')
+              package = lookup_package(username, name)
             end
-
-            raise Error, "Could not find package #{uri}" if package.nil?
+            raise Error, "Could not find package: #{uri}" if package.nil?
             "https://github.com/#{package['github_user']}/#{package['github_repo']}"
           end
 
-        end
+          def lookup_package(username, name)
+            conn = Faraday.new(:url => @@galaxy_api)
 
+            url = "#{@@galaxy_api}/roles/?name=#{name}&format=json"
+            loop do
+              response = conn.get(url)
+              if response.status != 200
+                raise Error, 'Could not read package from galaxy API.'
+              else
+                json = JSON.parse(response.body)
+                package = json['results'].find do |r|
+                  r['summary_fields']['owner']['username'] == username &&
+                    r['name'] == name
+                end
+                return package if package
+                url = json['next']
+                break unless url
+              end
+            end
+          end
+        end
       end
     end
   end
