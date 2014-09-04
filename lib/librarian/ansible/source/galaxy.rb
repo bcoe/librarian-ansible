@@ -46,6 +46,7 @@ module Librarian
               end
             end
 
+            raise Error, "Could not find package #{uri}" if package.nil?
             "https://github.com/#{package['github_user']}/#{package['github_repo']}"
           end
 
