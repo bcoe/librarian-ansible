@@ -1,4 +1,5 @@
 require 'librarian/ansible/environment'
+require 'librarian/action/base'
 
 module Librarian
   module Ansible
