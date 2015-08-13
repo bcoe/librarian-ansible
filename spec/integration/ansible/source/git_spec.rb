@@ -81,12 +81,12 @@ module Librarian
 
             context "the resolve" do
               it "should not raise an exception" do
-                expect { Action::Resolve.new(env).run }.to_not raise_error
+                expect { Librarian::Action::Resolve.new(env).run }.to_not raise_error
               end
             end
 
             context "the results" do
-              before { Action::Resolve.new(env).run }
+              before { Librarian::Action::Resolve.new(env).run }
 
               it "should create the lockfile" do
                 repo_path.join("Ansiblefile.lock").should exist
@@ -110,7 +110,7 @@ module Librarian
               ANSIBLEFILE
               repo_path.join("Ansiblefile").open("wb") { |f| f.write(ansiblefile) }
 
-              Action::Resolve.new(env).run
+              Librarian::Action::Resolve.new(env).run
             end
 
             context "the install" do
@@ -148,7 +148,7 @@ module Librarian
               ANSIBLEFILE
               repo_path.join("Ansiblefile").open("wb") { |f| f.write(ansiblefile) }
 
-              Action::Resolve.new(env).run
+              Librarian::Action::Resolve.new(env).run
               repo_path.join("tmp").rmtree if repo_path.join("tmp").exist?
             end
 
@@ -210,7 +210,7 @@ module Librarian
             end
 
             it "should not resolve" do
-              expect{ Action::Resolve.new(env).run }.to raise_error
+              expect{ Librarian::Action::Resolve.new(env).run }.to raise_error
             end
           end
 
@@ -230,7 +230,7 @@ module Librarian
             end
 
             it "should not resolve" do
-              expect{ Action::Resolve.new(env).run }.to raise_error
+              expect{ Librarian::Action::Resolve.new(env).run }.to raise_error
             end
           end
 
@@ -251,12 +251,12 @@ module Librarian
 
             context "the resolve" do
               it "should not raise an exception" do
-                expect { Action::Resolve.new(env).run }.to_not raise_error
+                expect { Librarian::Action::Resolve.new(env).run }.to_not raise_error
               end
             end
 
             context "the results" do
-              before { Action::Resolve.new(env).run }
+              before { Librarian::Action::Resolve.new(env).run }
 
               it "should create the lockfile" do
                 repo_path.join("Ansiblefile.lock").should exist
@@ -307,7 +307,7 @@ module Librarian
                 :ref => "some-branch"
             ANSIBLEFILE
             repo_path.join("Ansiblefile").open("wb") { |f| f.write(ansiblefile) }
-            Action::Resolve.new(env).run
+            Librarian::Action::Resolve.new(env).run
 
             # change the upstream copy of that branch: we expect to be able to pull the latest
             # when we re-resolve
@@ -326,7 +326,7 @@ module Librarian
 
           context "when updating not a role from that source" do
             before do
-              Action::Update.new(env).run
+              Librarian::Action::Update.new(env).run
             end
 
             it "should pull the tip from upstream" do
@@ -341,7 +341,7 @@ module Librarian
 
           context "when updating a role from that source" do
             before do
-              Action::Update.new(env, :names => %w(sample)).run
+              Librarian::Action::Update.new(env, :names => %w(sample)).run
             end
 
             it "should pull the tip from upstream" do
