@@ -180,6 +180,9 @@ Configuration can be set by passing specific options to other commands.
   the `--strip-dot-git` option to the `install` command. It can be unset at the
   local level by passing the `--no-strip-dot-git` option.
 
+Note that the directories will be purged if you run librarian-ansible with the
+--clean or --destructive flags.
+
 ## Contributing
 
 1. Fork it ( http://github.com/bcoe/librarian-ansible/fork )
