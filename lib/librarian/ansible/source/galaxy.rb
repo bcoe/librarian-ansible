@@ -55,7 +55,7 @@ module Librarian
               else
                 json = JSON.parse(response.body)
                 package = json['results'].find do |r|
-                  r['summary_fields']['owner']['username'] == username &&
+                  r['namespace'] == username &&
                     r['name'] == name
                 end
                 return package if package
