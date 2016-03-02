@@ -59,7 +59,7 @@ module Librarian
                     r['name'] == name
                 end
                 return package if package
-                url = json['next']
+                url = "#{@@galaxy_api}/#{json['next']}"
                 break unless url
               end
             end
