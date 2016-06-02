@@ -54,13 +54,17 @@ module Librarian
                 raise Error, 'Could not read package from galaxy API.'
               else
                 json = JSON.parse(response.body)
+
+                break if json['results'].nil?
+
                 package = json['results'].find do |r|
                   r['namespace'] == username &&
                     r['name'] == name
                 end
                 return package if package
+
+                break unless json['next']
                 url = "#{@@galaxy_api}/#{json['next']}"
-                break unless url
               end
             end
           end
