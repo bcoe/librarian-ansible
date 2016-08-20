@@ -107,6 +107,15 @@ And update your Ansiblefile accordingly:
 role "kunik.deploy-upstart-scripts", "1.0.0"
 ```
 
+Specifying git branch
+---------------------
+
+librarian-ansible support git branch checkout, using the `ref` attribute:
+
+```ruby
+role "pgolm.ansible-playbook-monit", git: "git@github.com:pgolm/ansible-playbook-monit.git", ref: "origin/develop"
+```
+
 ### Configuration
 
 Configuration comes from three sources with the following highest-to-lowest
