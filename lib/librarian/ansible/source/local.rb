@@ -26,11 +26,17 @@ module Librarian
         end
 
         def fetch_version(name, extra)
-          manifest_data(name)["version"] || "0.0.0"
+          if manifest_data(name).is_a?(Hash) and manifest_data(name).has_key?("version")
+            manifest_data(name)["version"]
+          else
+            "0.0.0"
+          end
         end
 
         def fetch_dependencies(name, version, extra)
-          manifest_data(name)["dependencies"]
+          if manifest_data(name).is_a?(Hash) and manifest_data(name).has_key?("dependencies")
+            manifest_data(name)["dependencies"]
+          end
         end
 
       private
