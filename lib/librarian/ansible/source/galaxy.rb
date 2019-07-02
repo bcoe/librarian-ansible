@@ -59,12 +59,12 @@ module Librarian
 
                 package = json['results'].find do |r|
                   r['summary_fields']['namespace']['name'] == username &&
-                      r['name'] == name
+                    r['name'] == name
                 end
                 return package if package
 
                 break unless json['next']
-                url = "#{@@galaxy_api}#{json['next']}"
+                url = File.join(@@galaxy_api, json['next'])
               end
             end
           end
