@@ -58,13 +58,13 @@ module Librarian
                 break if json['results'].nil?
 
                 package = json['results'].find do |r|
-                  r['namespace'] == username &&
+                  r['summary_fields']['namespace']['name'] == username &&
                     r['name'] == name
                 end
                 return package if package
 
                 break unless json['next']
-                url = "#{@@galaxy_api}/#{json['next']}"
+                url = File.join(@@galaxy_api, json['next'])
               end
             end
           end
